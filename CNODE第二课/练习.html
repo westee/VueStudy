@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>练习</title>
+  <style>
+    .cyan {
+      color: cyan;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    使用 &lt; span v-text='text'>&lt;/span&gt; 对文本进行进行渲染.
+    <span v-text='text'></span>
+    <br> 以html格式解析数据 使用&lt;span v-html='html'>&lt;/span>
+    <span v-html='html'></span>
+
+    <div v-bind:class='className'>看看颜色</div>
+
+    <button v-on:click='count'>{{num | filter1}}</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script>
+    Vue.filter('filter1', function (value) {
+      if (value % 2 === 0) {
+        return value;
+      } else {
+        return '奇数'
+      }
+    })
+    var app = new Vue({
+      el: '#app',
+      data: {
+        text: '渲染文本到页面',
+        html: '<ul><li>first</li><li>second</li></ul>',
+        className: 'cyan',
+        num: 0
+      },
+      methods: {
+        count: function () {
+          console.log('a');
+          this.num += 1;
+          console.log(this)
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>
